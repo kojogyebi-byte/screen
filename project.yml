@@ -45,3 +45,13 @@ targets:
         com.apple.security.app-sandbox: false
         com.apple.security.network.server: true
         com.apple.security.network.client: true
+
+schemes:
+  ScreenExtend:
+    build:
+      targets:
+        ScreenExtend: all
+    run:
+      config: Release
+    archive:
+      config: Release
