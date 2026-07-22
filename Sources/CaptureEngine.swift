@@ -58,7 +58,6 @@ final class CaptureEngine: NSObject, SCStreamDelegate, SCStreamOutput {
             config.minimumFrameInterval = CMTime(value: 1, timescale: CMTimeScale(fps))
             config.queueDepth = 5
             config.showsCursor = true
-            config.scalesToFit = true
 
             let s = SCStream(filter: filter, configuration: config, delegate: self)
             try s.addStreamOutput(self, type: .screen, sampleHandlerQueue: outputQueue)

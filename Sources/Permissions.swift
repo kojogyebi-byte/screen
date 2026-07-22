@@ -37,8 +37,10 @@ enum Permissions {
 
     @discardableResult
     static func requestAccessibility() -> Bool {
-        let key = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String
-        let options = [key: true] as CFDictionary
+        // "AXTrustedCheckOptionPrompt" is the value of kAXTrustedCheckOptionPrompt.
+        // Using the literal avoids CFString-vs-Unmanaged import differences that
+        // vary across SDK versions.
+        let options = ["AXTrustedCheckOptionPrompt": true] as CFDictionary
         return AXIsProcessTrustedWithOptions(options)
     }
 
