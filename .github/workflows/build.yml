@@ -3,15 +3,16 @@ name: Build macOS app
 on:
   push:
     paths:
-      - "Sources/**"
-      - "ObjC/**"
-      - "project.yml"
-      - ".github/workflows/build.yml"
+      - "mac/**"
+      - ".github/workflows/macos.yml"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: macos-14
+    defaults:
+      run:
+        working-directory: mac
 
     steps:
       - name: Checkout
@@ -48,12 +49,12 @@ jobs:
 
       - name: Zip app
         run: |
-          APP="build/Build/Products/Release/ScreenExtend.app"
-          ditto -c -k --sequesterRsrc --keepParent "$APP" "ScreenExtend-macos.zip"
+          APP="build/Build/Products/Release/Expanse.app"
+          ditto -c -k --sequesterRsrc --keepParent "$APP" "Expanse-macos.zip"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ScreenExtend-macOS
-          path: ScreenExtend-macos.zip
+          name: Expanse-macOS
+          path: mac/Expanse-macos.zip
           if-no-files-found: error
