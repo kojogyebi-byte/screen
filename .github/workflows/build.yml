@@ -3,16 +3,15 @@ name: Build macOS app
 on:
   push:
     paths:
-      - "mac/**"
-      - ".github/workflows/macos.yml"
+      - "Sources/**"
+      - "ObjC/**"
+      - "project.yml"
+      - ".github/workflows/build.yml"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: macos-14
-    defaults:
-      run:
-        working-directory: mac
 
     steps:
       - name: Checkout
@@ -56,5 +55,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ScreenExtend-macOS
-          path: mac/ScreenExtend-macos.zip
+          path: ScreenExtend-macos.zip
           if-no-files-found: error
